@@ -1,4 +1,4 @@
-package com.erdemtsynduev.myapplication
+package com.erdemtsynduev.samplevideortc
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

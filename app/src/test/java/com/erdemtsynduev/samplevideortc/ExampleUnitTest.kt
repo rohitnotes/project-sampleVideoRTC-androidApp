@@ -1,4 +1,4 @@
-package com.erdemtsynduev.myapplication
+package com.erdemtsynduev.samplevideortc
 
 import org.junit.Test
 
