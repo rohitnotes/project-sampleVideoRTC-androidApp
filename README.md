@@ -1,5 +1,4 @@
 # Sample VideoRTC Android App
-=++================================================
 
 This Android sample app demonstrates how to establish WebRTC video call. It's based on the
 original [WebRTC Android sample](https://webrtc.org/native-code/android/), slightly modified
