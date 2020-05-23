@@ -1,13 +1,3 @@
-/*
- *  Copyright 2014 The WebRTC Project Authors. All rights reserved.
- *
- *  Use of this source code is governed by a BSD-style license
- *  that can be found in the LICENSE file in the root of the source
- *  tree. An additional intellectual property rights grant can be found
- *  in the file PATENTS.  All contributing project authors may
- *  be found in the AUTHORS file in the root of the source tree.
- */
-
 package com.erdemtsynduev.rtcmodule;
 
 import android.content.Context;
@@ -15,7 +5,6 @@ import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
-import org.appspot.apprtc.AppRTCClient.SignalingParameters;
 import org.webrtc.AudioSource;
 import org.webrtc.AudioTrack;
 import org.webrtc.CameraVideoCapturer;
@@ -133,7 +122,7 @@ public class PeerConnectionClient {
   private Timer statsTimer;
   private VideoSink localRender;
   private List<VideoRenderer.Callbacks> remoteRenders;
-  private SignalingParameters signalingParameters;
+  private AppRTCClient.SignalingParameters signalingParameters;
   private int videoWidth;
   private int videoHeight;
   private int videoFps;
@@ -340,14 +329,14 @@ public class PeerConnectionClient {
 
   public void createPeerConnection(final VideoSink localRender,
       final VideoRenderer.Callbacks remoteRender, final VideoCapturer videoCapturer,
-      final SignalingParameters signalingParameters) {
+      final AppRTCClient.SignalingParameters signalingParameters) {
     createPeerConnection(
         localRender, Collections.singletonList(remoteRender), videoCapturer, signalingParameters);
   }
 
   public void createPeerConnection(final VideoSink localRender,
                                    final List<VideoRenderer.Callbacks> remoteRenders, final VideoCapturer videoCapturer,
-                                   final SignalingParameters signalingParameters) {
+                                   final AppRTCClient.SignalingParameters signalingParameters) {
     if (peerConnectionParameters == null) {
       Log.e(TAG, "Creating peer connection without initializing factory.");
       return;
