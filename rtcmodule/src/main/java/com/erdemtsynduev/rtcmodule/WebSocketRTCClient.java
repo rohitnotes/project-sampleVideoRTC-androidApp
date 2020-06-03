@@ -6,11 +6,16 @@ import android.util.Log;
 
 import com.erdemtsynduev.rtcmodule.utils.AsyncHttpURLConnection;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.webrtc.IceCandidate;
 import org.webrtc.SessionDescription;
+
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.CoroutineContext;
+import kotlin.coroutines.EmptyCoroutineContext;
 
 /**
  * Negotiates signaling for chatting with https://appr.tc "rooms".
@@ -82,7 +87,7 @@ public class WebSocketRTCClient implements AppRTCClient, WebSocketChannelClient.
         roomState = ConnectionState.NEW;
         wsClient = new WebSocketChannelClient(handler, this);
 
-        RoomParametersFetcher.RoomParametersFetcherEvents callbacks = new RoomParametersFetcher.RoomParametersFetcherEvents() {
+        RoomParamsFetchEvents callbacks = new RoomParamsFetchEvents() {
             @Override
             public void onSignalingParametersReady(final SignalingParameters params) {
                 WebSocketRTCClient.this.handler.post(new Runnable() {
@@ -99,7 +104,18 @@ public class WebSocketRTCClient implements AppRTCClient, WebSocketChannelClient.
             }
         };
 
-        new RoomParametersFetcher(connectionUrl, null, callbacks).makeRequest();
+        RoomParamsFetch roomParamsFetch = new RoomParamsFetch(callbacks);
+        roomParamsFetch.makeRequest(connectionParameters.roomId, new Continuation() {
+            @Override
+            public void resumeWith(@NotNull Object o) {
+
+            }
+
+            @Override
+            public CoroutineContext getContext() {
+                return EmptyCoroutineContext.INSTANCE;
+            }
+        });
     }
 
     // Disconnect from room and send bye messages - runs on a local looper thread.

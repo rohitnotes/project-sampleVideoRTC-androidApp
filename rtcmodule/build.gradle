@@ -31,7 +31,9 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation Deps.koin
+    implementation Deps.kotlin_coroutines_core
     implementation Deps.kotlin_coroutines_android
+    implementation "androidx.annotation:annotation:1.1.0"
 
     implementation project(Modules.remote)
 

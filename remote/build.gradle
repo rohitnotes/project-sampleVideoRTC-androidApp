@@ -31,12 +31,12 @@ android {
 dependencies {
     implementation Deps.kotlin_stdlib
     implementation Deps.kotlin_coroutines_core
-
     implementation "androidx.annotation:annotation:1.1.0"
 
     implementation Deps.retrofit
     implementation Deps.gson
     implementation Deps.ok_http_interceptor
+    implementation 'com.google.code.gson:gson:2.8.6'
 
     implementation Deps.koin
 

@@ -5,6 +5,9 @@ import okhttp3.logging.HttpLoggingInterceptor
 
 fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
     return OkHttpClient.Builder().apply {
-        if (BuildConfig.DEBUG) addInterceptor(loggingInterceptor)
+        if (BuildConfig.DEBUG) {
+            loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+            addInterceptor(loggingInterceptor)
+        }
     }.build()
 }

@@ -1,6 +1,7 @@
-package com.erdemtsynduev.remote.model
+package com.erdemtsynduev.remote.model.roomdata
 
 import androidx.annotation.Keep
+import com.erdemtsynduev.remote.model.roomdata.Messages
 
 @Keep
 data class Params(
@@ -10,12 +11,12 @@ data class Params(
     val ice_server_transports: String,
     val ice_server_url: String,
     val include_loopback_js: String,
-    val is_initiator: String,
+    val is_initiator: Boolean,
     val is_loopback: String,
     val media_constraints: String,
-    val messages: List<String>,
+    val messages: List<Messages>,
     val offer_options: String,
-    val pc_config: String,
+    val pc_config: PcConfig,
     val pc_constraints: String,
     val room_id: String,
     val room_link: String,
