@@ -47,4 +47,5 @@ object Deps {
 object Modules {
     const val rtcmodule = ":rtcmodule"
     const val remote = ":remote"
+    const val basedata = ":basedata"
 }

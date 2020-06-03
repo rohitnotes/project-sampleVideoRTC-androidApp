@@ -1,3 +1,4 @@
+include ':basedata'
 include ':remote'
 include ':rtcmodule'
 include ':app'
