@@ -36,7 +36,6 @@ dependencies {
     implementation Deps.retrofit
     implementation Deps.gson
     implementation Deps.ok_http_interceptor
-    implementation 'com.google.code.gson:gson:2.8.6'
 
     implementation Deps.koin
 
