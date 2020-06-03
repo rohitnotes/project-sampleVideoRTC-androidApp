@@ -10,6 +10,10 @@ object Versions {
     const val ok_http_interceptor = "4.5.0"
 
     const val junit = "4.13"
+    const val mockito = "3.3.3"
+    const val mockito_kotlin = "2.2.0"
+    const val truth = "1.0.1"
+    const val robolectric = "4.3.1"
 
     const val gradle_android = "4.0.0"
 
@@ -39,6 +43,11 @@ object Deps {
     const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
 
     const val junit = "junit:junit:${Versions.junit}"
+    const val mockito_core = "org.mockito:mockito-core:${Versions.mockito}"
+    const val mockito_inline = "org.mockito:mockito-inline:${Versions.mockito}"
+    const val mockito_kotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockito_kotlin}"
+    const val truth = "com.google.truth:truth:${Versions.truth}"
+    const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
 
     const val android_gradle_plugin = "com.android.tools.build:gradle:${Versions.gradle_android}"
     const val kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
