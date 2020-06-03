@@ -143,8 +143,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         int videoWidth = 0;
         int videoHeight = 0;
 
-        peerConnectionParameters =
-                new PeerConnectionClient.PeerConnectionParameters(true,
+        peerConnectionParameters = new PeerConnectionClient.PeerConnectionParameters(true,
                         false,
                         false,
                         videoWidth,

@@ -1,3 +1,4 @@
+include ':remote'
 include ':rtcmodule'
 include ':app'
 rootProject.name = "Sample VideoRTC"
