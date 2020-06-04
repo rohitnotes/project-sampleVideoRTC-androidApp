@@ -1,9 +1,10 @@
 package com.erdemtsynduev.remote.model.roomdata
 
 import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
 
 @Keep
 data class IceServers(
-    val urls: String,
-    val credential: String
+    @SerializedName("urls") val urls: String,
+    @SerializedName("credential") val credential: String
 )

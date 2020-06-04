@@ -1,10 +1,11 @@
 package com.erdemtsynduev.remote.model.roomdata
 
 import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
 
 @Keep
 data class PcConfig(
-    val bundlePolicy: String,
-    val iceServers: List<IceServers>,
-    val rtcpMuxPolicy: String
+    @SerializedName("bundlePolicy") val bundlePolicy: String,
+    @SerializedName("iceServers") val iceServers: List<IceServers>,
+    @SerializedName("rtcpMuxPolicy") val rtcpMuxPolicy: String
 )

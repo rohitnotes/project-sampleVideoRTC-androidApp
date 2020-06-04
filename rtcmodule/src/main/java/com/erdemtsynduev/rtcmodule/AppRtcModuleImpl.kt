@@ -3,7 +3,6 @@ package com.erdemtsynduev.rtcmodule
 import com.erdemtsynduev.remote.AppRtcProviderRemote
 import com.erdemtsynduev.rtcmodule.result.AppRtcRoomResult
 import com.erdemtsynduev.rtcmodule.result.TurnIceServerResult
-import java.lang.Exception
 
 class AppRtcModuleImpl(private val appRtcProviderRemote: AppRtcProviderRemote) {
 
@@ -23,7 +22,7 @@ class AppRtcModuleImpl(private val appRtcProviderRemote: AppRtcProviderRemote) {
         })
     }
 
-    suspend private fun fetchRemoteData(roomId: String): AppRtcRoomResult {
+    suspend fun fetchRemoteData(roomId: String): AppRtcRoomResult {
         val remoteData = appRtcProviderRemote.connectRoom(roomId)
         return if (remoteData.result == "SUCCESS") {
             AppRtcRoomResult.Success(remoteData)
@@ -32,7 +31,7 @@ class AppRtcModuleImpl(private val appRtcProviderRemote: AppRtcProviderRemote) {
         }
     }
 
-    suspend private fun fetchTurnIceServerData(url: String): TurnIceServerResult {
+    suspend fun fetchTurnIceServerData(url: String): TurnIceServerResult {
         val remoteData = appRtcProviderRemote.requestTurnServers(url)
         return TurnIceServerResult.Success(remoteData)
     }

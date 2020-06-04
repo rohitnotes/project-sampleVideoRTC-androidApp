@@ -1,6 +1,8 @@
 package com.erdemtsynduev.remote.model.roomdata
 
+import com.google.gson.annotations.SerializedName
+
 data class MediaConstraints(
-    val audio: Boolean,
-    val video: Boolean
+    @SerializedName("audio") val audio: Boolean,
+    @SerializedName("video") val video: Boolean
 )

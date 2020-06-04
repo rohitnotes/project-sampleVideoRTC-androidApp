@@ -36,6 +36,7 @@ dependencies {
     implementation "androidx.annotation:annotation:1.1.0"
 
     implementation project(Modules.remote)
+    implementation 'com.google.code.gson:gson:2.8.6'
 
     implementation 'org.webrtc:google-webrtc:1.0.22672'
 

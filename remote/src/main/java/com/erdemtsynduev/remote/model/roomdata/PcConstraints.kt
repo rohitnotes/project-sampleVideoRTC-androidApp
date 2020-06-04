@@ -1,5 +1,7 @@
 package com.erdemtsynduev.remote.model.roomdata
 
+import com.google.gson.annotations.SerializedName
+
 data class PcConstraints(
-    val optional: List<Any>
+    @SerializedName("optional") val optional: List<Any>
 )

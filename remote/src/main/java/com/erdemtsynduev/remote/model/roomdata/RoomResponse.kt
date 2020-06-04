@@ -1,10 +1,10 @@
 package com.erdemtsynduev.remote.model.roomdata
 
 import androidx.annotation.Keep
-import com.erdemtsynduev.remote.model.roomdata.Params
+import com.google.gson.annotations.SerializedName
 
 @Keep
 data class RoomResponse(
-    val params: Params,
-    val result: String
+    @SerializedName("params") val params: Params,
+    @SerializedName("result") val result: String
 )
