@@ -1,3 +1,4 @@
+include ':peerconnection'
 include ':basedata'
 include ':remote'
 include ':rtcmodule'
