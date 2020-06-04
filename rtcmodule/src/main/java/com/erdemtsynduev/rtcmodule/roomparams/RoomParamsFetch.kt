@@ -1,9 +1,10 @@
-package com.erdemtsynduev.rtcmodule
+package com.erdemtsynduev.rtcmodule.roomparams
 
 import androidx.annotation.WorkerThread
 import com.erdemtsynduev.remote.model.roomdata.IceServers
 import com.erdemtsynduev.remote.model.roomdata.RoomResponse
 import com.erdemtsynduev.rtcmodule.AppRTCClient.SignalingParameters
+import com.erdemtsynduev.rtcmodule.AppRtcModuleImpl
 import com.erdemtsynduev.rtcmodule.result.AppRtcRoomResult
 import com.erdemtsynduev.rtcmodule.result.TurnIceServerResult
 import org.koin.core.KoinComponent

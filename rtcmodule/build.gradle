@@ -33,10 +33,11 @@ dependencies {
     implementation Deps.koin
     implementation Deps.kotlin_coroutines_core
     implementation Deps.kotlin_coroutines_android
-    implementation "androidx.annotation:annotation:1.1.0"
+    implementation Deps.androidx_annotation
+
+    implementation 'com.google.code.gson:gson:2.8.6'
 
     implementation project(Modules.remote)
-    implementation 'com.google.code.gson:gson:2.8.6'
 
     implementation 'org.webrtc:google-webrtc:1.0.22672'
 

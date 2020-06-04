@@ -1,4 +1,4 @@
-package com.erdemtsynduev.rtcmodule
+package com.erdemtsynduev.rtcmodule.roomparams
 
 import com.erdemtsynduev.rtcmodule.AppRTCClient.SignalingParameters
 
