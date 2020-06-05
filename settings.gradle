@@ -1,3 +1,4 @@
+include ':roomparams'
 include ':peerconnection'
 include ':basedata'
 include ':remote'
