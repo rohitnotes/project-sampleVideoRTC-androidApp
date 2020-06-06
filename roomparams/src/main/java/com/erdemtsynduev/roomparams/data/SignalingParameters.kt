@@ -1,4 +1,4 @@
-package com.erdemtsynduev.roomparams
+package com.erdemtsynduev.roomparams.data
 
 import org.webrtc.IceCandidate
 import org.webrtc.PeerConnection

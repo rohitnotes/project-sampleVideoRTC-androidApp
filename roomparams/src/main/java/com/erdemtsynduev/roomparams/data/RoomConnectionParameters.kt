@@ -1,4 +1,4 @@
-package com.erdemtsynduev.roomparams
+package com.erdemtsynduev.roomparams.data
 
 /**
  * Struct holding the connection parameters of an AppRTC room.

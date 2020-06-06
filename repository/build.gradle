@@ -30,12 +30,16 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    testImplementation 'junit:junit:4.13'
-    implementation 'com.jakewharton.timber:timber:4.7.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    implementation Deps.koin
+    implementation Deps.androidx_annotation
+    implementation Deps.kotlin_coroutines_android
+
+    implementation project(Modules.remote)
+
+    testImplementation Deps.junit
+    testImplementation Deps.truth
+    testImplementation Deps.mockito_kotlin
+
+    androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'io.crossbar.autobahn:autobahn-android:20.2.1'
 }
