@@ -31,8 +31,10 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation Deps.koin
+    implementation Deps.kotlin_coroutines_core
+    implementation Deps.kotlin_coroutines_android
+    implementation Deps.androidx_annotation
     testImplementation 'junit:junit:4.13'
     implementation 'com.jakewharton.timber:timber:4.7.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
