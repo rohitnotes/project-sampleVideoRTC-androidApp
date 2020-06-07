@@ -1,6 +1,6 @@
-package com.erdemtsynduev.rtcmodule.roomparams
+package com.erdemtsynduev.roomparams
 
-import com.erdemtsynduev.rtcmodule.AppRTCClient.SignalingParameters
+import com.erdemtsynduev.roomparams.data.SignalingParameters
 
 /**
  * Room parameters fetcher callbacks.

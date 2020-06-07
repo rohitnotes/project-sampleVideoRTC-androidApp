@@ -29,17 +29,17 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation Deps.koin
     implementation Deps.kotlin_coroutines_core
     implementation Deps.kotlin_coroutines_android
     implementation Deps.androidx_annotation
 
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation Deps.gson
+    implementation Deps.webrtc
 
-    implementation project(Modules.remote)
-
-    implementation 'org.webrtc:google-webrtc:1.0.22672'
+    implementation project(Modules.roomparams)
+    implementation project(Modules.websocket)
+    implementation project(Modules.peerconnection)
 
     testImplementation Deps.junit
 

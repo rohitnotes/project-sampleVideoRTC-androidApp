@@ -1,4 +1,4 @@
-package com.erdemtsynduev.rtcmodule.result
+package com.erdemtsynduev.roomparams.result
 
 import com.erdemtsynduev.remote.model.turnserver.TurnIceServerResponse
 

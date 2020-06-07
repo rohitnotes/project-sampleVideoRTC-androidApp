@@ -1,4 +1,3 @@
-include ':repository'
 include ':websocket'
 include ':roomparams'
 include ':peerconnection'

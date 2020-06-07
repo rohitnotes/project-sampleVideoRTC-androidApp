@@ -1,10 +1,12 @@
 package com.erdemtsynduev.roomparams
 
 import com.erdemtsynduev.remote.AppRtcProviderRemote
+import com.erdemtsynduev.roomparams.result.AppRtcRoomResult
+import com.erdemtsynduev.roomparams.result.TurnIceServerResult
 
-class RoomParametersImpl(private val appRtcProviderRemote: AppRtcProviderRemote) {
+class RoomParametersImpl(private val appRtcProviderRemote: AppRtcProviderRemote) : RoomParameters {
 
-    suspend fun connectRoomAppRtc(roomId: String): AppRtcRoomResult {
+    override suspend fun connectRoomAppRtc(roomId: String): AppRtcRoomResult {
         return (try {
             fetchRemoteData(roomId)
         } catch (e: Exception) {
@@ -12,7 +14,7 @@ class RoomParametersImpl(private val appRtcProviderRemote: AppRtcProviderRemote)
         })
     }
 
-    suspend fun getDataTurnIceServer(url: String): TurnIceServerResult {
+    override suspend fun getDataTurnIceServer(url: String): TurnIceServerResult {
         return (try {
             fetchTurnIceServerData(url)
         } catch (e: Exception) {
@@ -20,7 +22,7 @@ class RoomParametersImpl(private val appRtcProviderRemote: AppRtcProviderRemote)
         })
     }
 
-    suspend fun fetchRemoteData(roomId: String): AppRtcRoomResult {
+    private suspend fun fetchRemoteData(roomId: String): AppRtcRoomResult {
         val remoteData = appRtcProviderRemote.connectRoom(roomId)
         return if (remoteData.result == "SUCCESS") {
             AppRtcRoomResult.Success(remoteData)
@@ -29,7 +31,7 @@ class RoomParametersImpl(private val appRtcProviderRemote: AppRtcProviderRemote)
         }
     }
 
-    suspend fun fetchTurnIceServerData(url: String): TurnIceServerResult {
+    private suspend fun fetchTurnIceServerData(url: String): TurnIceServerResult {
         val remoteData = appRtcProviderRemote.requestTurnServers(url)
         return TurnIceServerResult.Success(remoteData)
     }

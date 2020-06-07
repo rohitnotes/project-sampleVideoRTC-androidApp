@@ -1,12 +1,11 @@
-package com.erdemtsynduev.rtcmodule.roomparams
+package com.erdemtsynduev.roomparams
 
 import androidx.annotation.WorkerThread
 import com.erdemtsynduev.remote.model.roomdata.IceServers
 import com.erdemtsynduev.remote.model.roomdata.RoomResponse
-import com.erdemtsynduev.rtcmodule.AppRTCClient.SignalingParameters
-import com.erdemtsynduev.rtcmodule.AppRtcModuleImpl
-import com.erdemtsynduev.rtcmodule.result.AppRtcRoomResult
-import com.erdemtsynduev.rtcmodule.result.TurnIceServerResult
+import com.erdemtsynduev.roomparams.data.SignalingParameters
+import com.erdemtsynduev.roomparams.result.AppRtcRoomResult
+import com.erdemtsynduev.roomparams.result.TurnIceServerResult
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.webrtc.IceCandidate
@@ -15,11 +14,11 @@ import org.webrtc.SessionDescription
 
 class RoomParamsFetch(val events: RoomParamsFetchEvents) : KoinComponent {
 
-    private val appRtcModuleImpl: AppRtcModuleImpl by inject()
+    private val roomParametersImpl: RoomParametersImpl by inject()
 
     @WorkerThread
     suspend fun makeRequest(roomUrl: String) {
-        val roomData = appRtcModuleImpl.connectRoomAppRtc(roomUrl)
+        val roomData = roomParametersImpl.connectRoomAppRtc(roomUrl)
         when (roomData) {
             is AppRtcRoomResult.Success -> {
                 parseData(roomData.roomResponse)
@@ -32,7 +31,7 @@ class RoomParamsFetch(val events: RoomParamsFetchEvents) : KoinComponent {
     @WorkerThread
     suspend fun requestTurnServers(ice_server_url: String): List<PeerConnection.IceServer> {
         val turnServers: ArrayList<PeerConnection.IceServer> = ArrayList()
-        val turnIceServerData = appRtcModuleImpl.getDataTurnIceServer(ice_server_url)
+        val turnIceServerData = roomParametersImpl.getDataTurnIceServer(ice_server_url)
         return when (turnIceServerData) {
             is TurnIceServerResult.Success -> {
                 turnIceServerData.responseData.iceServers.forEach {

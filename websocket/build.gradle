@@ -30,14 +30,18 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation Deps.koin
     implementation Deps.kotlin_coroutines_core
     implementation Deps.kotlin_coroutines_android
     implementation Deps.androidx_annotation
-    testImplementation 'junit:junit:4.13'
-    implementation 'com.jakewharton.timber:timber:4.7.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+
+    implementation Deps.timber
+    implementation Deps.autobahn
+
+    implementation project(Modules.remote)
+
+    testImplementation Deps.junit
+
+    androidTestImplementation Deps.androidx_junit
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'io.crossbar.autobahn:autobahn-android:20.2.1'
 }

@@ -1,5 +1,6 @@
 package com.erdemtsynduev.rtcmodule
 
+import com.erdemtsynduev.roomparams.data.SignalingParameters
 import org.webrtc.IceCandidate
 import org.webrtc.SessionDescription
 
@@ -14,7 +15,7 @@ interface SignalingEvents {
      * Callback fired once the room's signaling parameters
      * SignalingParameters are extracted.
      */
-    fun onConnectedToRoom(params: AppRTCClient.SignalingParameters?)
+    fun onConnectedToRoom(signalingParameters: SignalingParameters?)
 
     /**
      * Callback fired once remote SDP is received.

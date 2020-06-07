@@ -1,7 +1,8 @@
 package com.erdemtsynduev.roomparams.di
 
+import com.erdemtsynduev.roomparams.RoomParametersImpl
 import org.koin.dsl.module
 
-val appRtcModule = module {
-    single { AppRtcModuleImpl(get()) }
+val roomParamsModule = module {
+    single { RoomParametersImpl(get()) }
 }

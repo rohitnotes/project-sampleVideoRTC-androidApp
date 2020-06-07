@@ -1,6 +1,9 @@
 package com.erdemtsynduev.roomparams
 
+import com.erdemtsynduev.roomparams.result.AppRtcRoomResult
+import com.erdemtsynduev.roomparams.result.TurnIceServerResult
+
 interface RoomParameters {
-    suspend fun connectRoom(roomId: String): RoomResponse
-    suspend fun requestTurnServers(url: String): TurnIceServerResponse
+    suspend fun connectRoomAppRtc(roomId: String): AppRtcRoomResult
+    suspend fun getDataTurnIceServer(url: String): TurnIceServerResult
 }

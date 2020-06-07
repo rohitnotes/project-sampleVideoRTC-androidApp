@@ -15,10 +15,6 @@ import java.net.URISyntaxException
 
 /**
  * WebSocket client implementation.
- *
- * <p>All public methods should be called from a looper executor thread
- * passed in a constructor, otherwise exception will be thrown.
- * All events are dispatched on the same thread.
  */
 class WebSocketChannelClientImpl(var webSocketChannelEvents: WebSocketChannelEvents) :
     WebSocketChannelClient, WebSocketConnectionHandler() {
@@ -41,15 +37,15 @@ class WebSocketChannelClientImpl(var webSocketChannelEvents: WebSocketChannelEve
         return connectionState
     }
 
-    override suspend fun connect(wsUrl: String, postUrl: String) {
+    override suspend fun connect(webSocketUrl: String, postUrl: String) {
         if (connectionState != WebSocketConnectionState.NEW) {
             Timber.e("WebSocket is already connected.")
             return
         }
-        webSocketServerUrl = wsUrl
-        postServerUrl = postUrl
-        Timber.d("Connecting WebSocket to: $wsUrl. Post URL: $postUrl")
-        webSocketConnection = WebSocketConnection()
+        this.webSocketServerUrl = webSocketUrl
+        this.postServerUrl = postUrl
+        Timber.d("Connecting WebSocket to: $webSocketUrl. Post URL: $postUrl")
+        this.webSocketConnection = WebSocketConnection()
         try {
             webSocketConnection?.connect(webSocketServerUrl, this)
         } catch (e: URISyntaxException) {
