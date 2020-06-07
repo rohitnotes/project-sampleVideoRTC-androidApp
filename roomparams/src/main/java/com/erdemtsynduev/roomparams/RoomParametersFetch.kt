@@ -12,14 +12,13 @@ import org.webrtc.IceCandidate
 import org.webrtc.PeerConnection
 import org.webrtc.SessionDescription
 
-class RoomParamsFetch(val events: RoomParamsFetchEvents) : KoinComponent {
+class RoomParametersFetch(val events: RoomParametersFetchEvents) : KoinComponent {
 
-    private val roomParametersImpl: RoomParametersImpl by inject()
+    private val roomParametersImpl: RoomParametersNetworkImpl by inject()
 
     @WorkerThread
     suspend fun makeRequest(roomUrl: String) {
-        val roomData = roomParametersImpl.connectRoomAppRtc(roomUrl)
-        when (roomData) {
+        when (val roomData = roomParametersImpl.connectRoomAppRtc(roomUrl)) {
             is AppRtcRoomResult.Success -> {
                 parseData(roomData.roomResponse)
             }
@@ -31,8 +30,7 @@ class RoomParamsFetch(val events: RoomParamsFetchEvents) : KoinComponent {
     @WorkerThread
     suspend fun requestTurnServers(ice_server_url: String): List<PeerConnection.IceServer> {
         val turnServers: ArrayList<PeerConnection.IceServer> = ArrayList()
-        val turnIceServerData = roomParametersImpl.getDataTurnIceServer(ice_server_url)
-        return when (turnIceServerData) {
+        return when (val turnIceServerData = roomParametersImpl.getDataTurnIceServer(ice_server_url)) {
             is TurnIceServerResult.Success -> {
                 turnIceServerData.responseData.iceServers.forEach {
                     val turnServer =

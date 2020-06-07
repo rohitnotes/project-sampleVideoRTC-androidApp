@@ -4,9 +4,11 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 
-import com.erdemtsynduev.rtcmodule.roomparams.RoomParamsFetch;
-import com.erdemtsynduev.rtcmodule.roomparams.RoomParamsFetchEvents;
-import com.erdemtsynduev.rtcmodule.utils.AsyncHttpURLConnection;
+import com.erdemtsynduev.roomparams.RoomParametersFetch;
+import com.erdemtsynduev.roomparams.RoomParametersFetchEvents;
+import com.erdemtsynduev.roomparams.data.RoomConnectionParameters;
+import com.erdemtsynduev.roomparams.data.SignalingParameters;
+import com.erdemtsynduev.websocket.WebSocketChannelClient;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -89,7 +91,7 @@ public class WebSocketRTCClient implements AppRTCClient, WebSocketChannelClient.
         roomState = ConnectionState.NEW;
         wsClient = new WebSocketChannelClient(handler, this);
 
-        RoomParamsFetchEvents callbacks = new RoomParamsFetchEvents() {
+        RoomParametersFetchEvents callbacks = new RoomParametersFetchEvents() {
             @Override
             public void onSignalingParametersReady(final SignalingParameters params) {
                 WebSocketRTCClient.this.handler.post(new Runnable() {
@@ -106,8 +108,8 @@ public class WebSocketRTCClient implements AppRTCClient, WebSocketChannelClient.
             }
         };
 
-        RoomParamsFetch roomParamsFetch = new RoomParamsFetch(callbacks);
-        roomParamsFetch.makeRequest(connectionParameters.roomId, new Continuation() {
+        RoomParametersFetch roomParametersFetch = new RoomParametersFetch(callbacks);
+        roomParametersFetch.makeRequest(connectionParameters.getRoomId(), new Continuation() {
             @Override
             public void resumeWith(@NotNull Object o) {
 

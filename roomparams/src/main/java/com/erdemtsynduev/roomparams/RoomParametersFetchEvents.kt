@@ -5,7 +5,7 @@ import com.erdemtsynduev.roomparams.data.SignalingParameters
 /**
  * Room parameters fetcher callbacks.
  */
-interface RoomParamsFetchEvents {
+interface RoomParametersFetchEvents {
     /**
      * Callback fired once the room's signaling parameters
      * SignalingParameters are extracted.

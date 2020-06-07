@@ -4,7 +4,7 @@ import com.erdemtsynduev.remote.AppRtcProviderRemote
 import com.erdemtsynduev.roomparams.result.AppRtcRoomResult
 import com.erdemtsynduev.roomparams.result.TurnIceServerResult
 
-class RoomParametersImpl(private val appRtcProviderRemote: AppRtcProviderRemote) : RoomParameters {
+class RoomParametersNetworkImpl(private val appRtcProviderRemote: AppRtcProviderRemote) : RoomParametersNetwork {
 
     override suspend fun connectRoomAppRtc(roomId: String): AppRtcRoomResult {
         return (try {
