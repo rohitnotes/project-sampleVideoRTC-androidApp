@@ -16,7 +16,7 @@ import java.net.URISyntaxException
 /**
  * WebSocket client implementation.
  */
-class WebSocketChannelClientImpl(var webSocketChannelEvents: WebSocketChannelEvents) :
+class WebSocketChannelClientImpl(private var webSocketChannelEvents: WebSocketChannelEvents) :
     WebSocketChannelClient, WebSocketConnectionHandler() {
 
     private var webSocketConnection: WebSocketConnection? = null
@@ -98,12 +98,12 @@ class WebSocketChannelClientImpl(var webSocketChannelEvents: WebSocketChannelEve
         }
     }
 
-    private suspend fun send(message: String) {
+    private fun send(message: String) {
         when (connectionState) {
             WebSocketConnectionState.NEW, WebSocketConnectionState.CONNECTED -> {
                 // Store outgoing messages and send them after websocket client
                 // is registered.
-                Timber.d("WS ACC: $message")
+                Timber.d("WebSocket ACC: $message")
                 webSocketSendQueue.add(message)
                 return
             }
@@ -117,7 +117,7 @@ class WebSocketChannelClientImpl(var webSocketChannelEvents: WebSocketChannelEve
                     json.put("cmd", "send")
                     json.put("msg", message)
                     val messageJson = json.toString()
-                    Timber.d("C->WSS: $messageJson")
+                    Timber.d("Client -> WebSocketServer: $messageJson")
                     webSocketConnection?.sendMessage(messageJson)
                 } catch (e: JSONException) {
                     reportError("WebSocket send JSON error: " + e.message)
@@ -135,11 +135,11 @@ class WebSocketChannelClientImpl(var webSocketChannelEvents: WebSocketChannelEve
     // Asynchronously send POST/DELETE to WebSocket server.
     private fun sendWSSMessage(method: String, message: String) {
         val postUrl = "$postServerUrl/$roomID/$clientID"
-        Timber.d("WS $method : $postUrl : $message")
+        Timber.d("WebSocket $method : $postUrl : $message")
         val httpConnection =
             AsyncHttpURLConnection(method, postUrl, message, object : AsyncHttpEvents() {
                 fun onHttpError(errorMessage: String) {
-                    reportError("WS $method error: $errorMessage")
+                    reportError("WebSocket $method error: $errorMessage")
                 }
 
                 fun onHttpComplete(response: String) {}
@@ -147,7 +147,7 @@ class WebSocketChannelClientImpl(var webSocketChannelEvents: WebSocketChannelEve
         httpConnection.send()
     }
 
-    private suspend fun reportError(errorMessage: String) {
+    private fun reportError(errorMessage: String) {
         Timber.e(errorMessage)
         if (connectionState != WebSocketConnectionState.ERROR) {
             connectionState = WebSocketConnectionState.ERROR
@@ -184,7 +184,7 @@ class WebSocketChannelClientImpl(var webSocketChannelEvents: WebSocketChannelEve
 
     @ObsoleteCoroutinesApi
     override fun onMessage(payload: String) {
-        Timber.d("WSS->C: $payload")
+        Timber.d("WebSocketServer -> Client: $payload")
         if (connectionState == WebSocketConnectionState.CONNECTED || connectionState == WebSocketConnectionState.REGISTERED) {
             scope.launch {
                 webSocketChannelEvents.onWebSocketMessage(payload)
